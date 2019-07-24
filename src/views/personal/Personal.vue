@@ -11,7 +11,7 @@
             <header class="user-infos">
                 <div class="table">
                     <div class="cell">
-                        <a href="##">登录/注册</a>
+                        <a href="##" @click="goto">登录/注册</a>
                     </div>
                 </div>
             </header>
@@ -167,9 +167,19 @@
 
 import TabBar from 'components/layout/TabBar'
 export default {
+    data(){
+        return{
+
+        }
+    },
     components: {
-    TabBar,
-  },
+        TabBar,
+    },
+    methods:{
+        goto(){
+             this.$router.push("/login")
+        }
+    }
 }
 </script>
 

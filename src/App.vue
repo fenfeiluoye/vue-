@@ -4,6 +4,7 @@
 
 <script>
 import '@/assets/styles/reset.styl'
+import '@/assets/iconfont/iconfont.css'
 import Home from './views/Home'
 export default {
   components: {

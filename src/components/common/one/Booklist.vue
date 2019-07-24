@@ -39,6 +39,47 @@
 
 
 
+<script>
+
+import http from 'utils/http'
+import { scroll} from 'utils/scroll'
+
+export default {
+
+    data(){
+        return{
+             book_list :[]
+        }
+    },
+
+    async beforeCreate(){
+
+        let book_data = ( await http({
+            method :'get',
+            url: '/api/touch/optimization/feed?page=0&udid=904daa6b9bf4ecd91db627046b198faf&permanent_id=20181108091900101810847345010958798&client_version=1.0&user_client=touch&app_id=touch&h5_server=1&ct=touch&cv=1.0&ts=1541764542159&tc=abd6be5b462a3397360299f6060fa653'
+        }))
+
+        this.book_list = book_data.result.columns[0].infos
+        console.log(this.book_list)
+
+        // this.$nextTick(()=>{
+        //     new BScroll('#swiper-container',{
+        //      probeType: 1, 
+        //      scrollX: true,
+        //     click: true
+        //     }) 
+        // })
+        this.$nextTick(()=>{
+            scroll({
+                el: '#swiper-container',
+                horizontal: true,
+                })
+        })
+        
+    }
+    
+}
+</script>
 <style lang="stylus" scoped>
 
 @import '~styles/ellipsis.styl'
@@ -106,7 +147,7 @@
                                         margin-top: .05rem
                                         margin-left: .4rem
                                         margin-right: .125rem
-                                        overflow hidden
+                                    
                                         width 100%
 
                 .swiper-price
@@ -125,46 +166,3 @@
                             text-decoration line-through
                         
 </style>
-
-
-<script>
-
-import http from 'utils/http'
-import { scroll} from 'utils/scroll'
-
-export default {
-
-    data(){
-        return{
-             book_list :[]
-        }
-    },
-
-    async beforeCreate(){
-
-        let book_data = ( await http({
-            method :'get',
-            url: '/api/touch/optimization/feed?page=0&udid=904daa6b9bf4ecd91db627046b198faf&permanent_id=20181108091900101810847345010958798&client_version=1.0&user_client=touch&app_id=touch&h5_server=1&ct=touch&cv=1.0&ts=1541764542159&tc=abd6be5b462a3397360299f6060fa653'
-        }))
-
-        this.book_list = book_data.result.columns[0].infos
-        console.log(this.book_list)
-
-        // this.$nextTick(()=>{
-        //     new BScroll('#swiper-container',{
-        //      probeType: 1, 
-        //      scrollX: true,
-        //     click: true
-        //     }) 
-        // })
-        this.$nextTick(()=>{
-            scroll({
-                el: '#swiper-container',
-                horizontal: true,
-                })
-        })
-        
-    }
-    
-}
-</script>

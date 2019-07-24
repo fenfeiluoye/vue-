@@ -1,8 +1,17 @@
 <template>
     <div >
         <mt-swipe :auto='4000'>
-            <mt-swipe-item  v-for="item of swi_top" :key = "item.rank">
+            <!-- <mt-swipe-item  v-for="item of swi_top" :key = "item.rank">
                 <img  id="img1" :src="item.bannerImg" >
+            </mt-swipe-item> -->
+            <mt-swipe-item  >
+                <img  id="img1" src="../swiper-/1.jpg" >
+            </mt-swipe-item>
+            <mt-swipe-item  >       
+                <img  id="img1" src="../swiper-/2.jpg" >    
+            </mt-swipe-item>
+            <mt-swipe-item  >
+                <img  id="img1" src="../swiper-/3.jpg" >
             </mt-swipe-item>
         </mt-swipe>
         
@@ -34,7 +43,7 @@ import { Swipe, SwipeItem } from 'mint-ui';
 export default {
     data(){
         return{
-            swi_top :[]
+            // swi_top :[]
         }
         
     },
@@ -44,15 +53,15 @@ export default {
         [SwipeItem.name]: SwipeItem
     },
 
-    async beforeCreate (){
-        let swi_toper = (await http({
-            method: 'get',
-            url: '/api/mina/decoration/getIndexData?udid=d9c175116300d1760da7222aa41a2773&permanent_id=20181107192101933271374557557486127&client_version=1.0&user_client=touch&app_id=touch&h5_server=1&ct=touch&cv=1.0&ts=1541598312211&tc=41ed454c295024e82e934334f93164c2'
-        }))
-        this.swi_top = swi_toper.result.bannerData
-        console.log(this.swi_top)
+    // async beforeCreate (){
+    //     let swi_toper = (await http({
+    //         method: 'get',
+    //         url: '/api/mina/decoration/getIndexData?udid=d9c175116300d1760da7222aa41a2773&permanent_id=20181107192101933271374557557486127&client_version=1.0&user_client=touch&app_id=touch&h5_server=1&ct=touch&cv=1.0&ts=1541598312211&tc=41ed454c295024e82e934334f93164c2'
+    //     }))
+    //     this.swi_top = swi_toper.result.bannerData
+    //     console.log(this.swi_top)
     
-    }
+    // }
 
 }
 

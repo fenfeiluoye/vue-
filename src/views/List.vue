@@ -1,18 +1,17 @@
 <template>
     <div  class="home-wrap">
         <Header></Header>
-
         <main>
-            <div id="j_search_list" class="search_list" style="display: block;">
+            <!-- <div id="j_search_list" class="search_list" > -->
                 <ul>
                     <li v-for="(item,index) of list" :key='index'>
-                        <a class="aa">
+                        <a class="aa" @click="goto(item.key)">
                             <span class="value">{{ item.key}}</span>
                             <span class="num">约{{ item.count}}个结果</span>
                         </a>
                     </li>
                 </ul>
-            </div>      
+            <!-- </div>       -->
         </main>
     </div>
 </template>
@@ -40,9 +39,6 @@ export default {
         }))
         
         this.list = book_data.word
-
-        console.log(this.list)
-
         // let book_data11 = ( await http({
         //     method :'get',
         //     url: '/search_ajax.php?keyword='+this.$route.query.result+'&act=get_product_flow_search',
@@ -52,20 +48,33 @@ export default {
     },
 
     mounted(){
-        console.log(this.result)
+
+    },
+    methods:{
+        goto(key){
+            this.$router.push({path :'/search-list',query:{
+              keyword:key  
+            }})
+        }
     }
 }
 </script>
 
 <style lang="stylus" scoped>
 @import '~styles/border.styl'
+.home-wrap
+  height 100%
+  display flex
+  flex-direction column
 main
-    display flex
-    flex 1
-.search_list
-    height: .44rem
     
-    width 100%
+    display flex
+    flex-direction column
+    flex 1
+    overflow hidden
+// .search_list
+//     height 100%
+    
 .aa
     display: block;
     height: .44rem;

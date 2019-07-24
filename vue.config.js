@@ -11,6 +11,7 @@ module.exports = {
       .set('styles', resolve('./src/assets/styles'))
       .set('views', resolve('./src/views'))
       .set('utils', resolve('./src/utils'))
+      .set('assets', resolve('./src/assets'))
   },
 
   devServer :{
@@ -44,16 +45,16 @@ module.exports = {
          },
          hostRewrite: 'search.m.dangdang.com'
     },
-    '/h5ajax' :{
-        target :'http://home.m.dangdang.com',
-        changeOrigin: true,
-         headers: {
-           referer: 'http://home.m.dangdang.com',
-           host : 'home.m.dangdang.com'
-         },
-         hostRewrite: 'home.m.dangdang.com'
+    // '/h5ajax' :{
+    //     target :'http://home.m.dangdang.com',
+    //     changeOrigin: true,
+    //      headers: {
+    //        referer: 'http://home.m.dangdang.com',
+    //        host : 'home.m.dangdang.com'
+    //      },
+    //      hostRewrite: 'home.m.dangdang.com'
 
-    },
+    // },
     
 
     }

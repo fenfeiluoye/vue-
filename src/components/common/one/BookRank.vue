@@ -22,7 +22,8 @@
 
 
                             <h4 ><label >¥ {{ item.infos[0].salePrice }}</label> <del >¥ {{item.infos[0].originPrice}}</del> <!----></h4>
-                            <h3 ><b ></b> 
+                            <h3 >
+                                <!-- <b ></b>  -->
                                 <em  class="fr">
                                     <i  class="iconfont icon-pinglun">
                                         <svg t="1542109898619" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3073" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><defs></defs><path d="M825.088 90.432H209.28A137.216 137.216 0 0 0 72.448 227.264v398.464c0 75.456 61.504 136.832 136.832 136.832h78.656l58.176 150.656c6.848 13.632 17.152 20.48 30.784 20.48 13.632 0 27.328-6.848 30.784-20.48l58.176-150.656h352.256c75.328 0 136.96-61.376 136.96-136.832V227.2c6.784-75.2-54.72-136.768-129.984-136.768z m68.352 535.232a68.48 68.48 0 0 1-68.352 68.416H448.704c-13.632 0-27.328 6.976-30.72 20.48l-37.696 92.48-37.568-92.416c-6.848-13.504-17.088-20.48-30.784-20.48H209.28a68.544 68.544 0 0 1-68.416-68.416V227.2c0-37.568 30.848-68.416 68.416-68.416h615.808c37.568 0 68.352 30.848 68.352 68.416v398.464zM261.312 432a48 48 0 1 0 96 0 48 48 0 1 0-96 0z m201.344 0a48 48 0 1 0 96 0 48 48 0 1 0-96 0z m202.688 0a48 48 0 1 0 96 0 48 48 0 1 0-96 0z" p-id="3074" fill="#8a8a8a"></path></svg>
@@ -75,19 +76,22 @@
                 
                 .box
                     display flex
+                    width 100%
                     padding .09rem .06rem
                     >img 
-                        width 1.1rem
+                        flex 11
+                        // width 1.1rem
                         height 1.1rem
                     >div
-                        flex 1
+                        flex 28
                         margin-left .1rem
+                        overflow hidden
                         .wrap
                             color: #383838;
                             margin-top: .05rem;
                             height: .2rem;
-                            width: 2.8rem;
-                            overflow: hidden;
+                            // width: 2.8rem;
+                         
                             font-size: .14rem
                             color: #333
                             margin-bottom: .05rem
@@ -112,7 +116,7 @@
 
                         h3 
                             margin-top .1rem
-                            font-size .1rem
+                            // font-size .1rem
                             height .17rem
                             display flex
                             align-item center
@@ -124,6 +128,12 @@
                                 margin-left .1rem
                                 color #98a6aa
                                 flex 1
+                            >em:nth-child(1)
+                                font-style normal 
+                                float right
+                                margin-left .1rem
+                                color #98a6aa
+                                flex 2    
                             .icon-shouye-gouwuche
                                 color: #f22b2b;
                                 font-size: .18rem;
@@ -144,7 +154,7 @@
 <script>
 
 import http from 'utils/http'
-
+import { Indicator } from 'mint-ui'
 
     
 
@@ -168,7 +178,10 @@ export default {
     // },
 
     async beforeCreate(){
-
+        Indicator.open({
+            text: '正在加载中...',
+            spinnerType: 'fading-circle'
+        })
         let book_data = ( await http({
             method :'get',
             url: '/api/touch/optimization/feed?page=0&udid=904daa6b9bf4ecd91db627046b198faf&permanent_id=20181108091900101810847345010958798&client_version=1.0&user_client=touch&app_id=touch&h5_server=1&ct=touch&cv=1.0&ts=1541764542159&tc=abd6be5b462a3397360299f6060fa653'
@@ -177,7 +190,7 @@ export default {
         this.book_rank = book_data.result.columns.slice(1,5)
         console.log(this.book_rank)
 
-
+        Indicator.close();
         // this.$nextTick(()=>{
         //     scroll({
         //         el: '#swiper-container',
